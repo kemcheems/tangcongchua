@@ -1,0 +1,65 @@
+:root { --red: #ff4757; --glass: rgba(255, 255, 255, 0.12); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    min-height: 100vh; overflow-x: hidden; overflow-y: auto; color: white;
+    font-family: 'Quicksand', sans-serif;
+    background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+    display: flex; justify-content: center; align-items: center; padding: 15px;
+}
+
+.snow-bg { position: fixed; inset: 0; background: url('https://www.transparenttextures.com/patterns/snow.png'); z-index: 1; animation: snowMove 20s linear infinite; pointer-events: none; }
+@keyframes snowMove { from { background-position: 0 0; } to { background-position: 500px 1000px; } }
+
+.screen { display: none; z-index: 10; width: 100%; justify-content: center; align-items: center; animation: fadeIn 0.8s ease; }
+.screen.active { display: flex; }
+
+/* Responsive Layout */
+.glass-card { 
+    display: flex; flex-wrap: wrap; background: var(--glass); backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255,255,255,0.2); border-radius: 40px; padding: 25px; 
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5); max-width: 850px; width: 100%;
+}
+.content-left { flex: 1; min-width: 280px; text-align: center; padding: 15px; position: relative; }
+.content-right { flex: 1; display: flex; justify-content: center; align-items: center; padding: 15px; }
+
+.title-font { font-family: 'Dancing Script', cursive; font-size: clamp(30px, 8vw, 45px); margin-bottom: 5px; }
+.title-font span { color: var(--red); }
+.desc { font-size: 14px; opacity: 0.8; margin-bottom: 20px; }
+
+/* Keypad */
+.pin-box input { 
+    width: 100%; max-width: 200px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); 
+    border-radius: 10px; padding: 12px; color: white; font-size: 24px; text-align: center; letter-spacing: 5px; outline: none; margin-bottom: 20px; 
+}
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 220px; margin: 0 auto; }
+.keypad button { aspect-ratio: 1/1; border-radius: 15px; border: none; background: rgba(255,255,255,0.15); color: white; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.keypad button:hover { background: var(--red); }
+.clear-btn { background: rgba(235, 77, 75, 0.4) !important; color: #ff7979 !important; }
+.submit-btn { background: rgba(46, 204, 113, 0.4) !important; color: #badc58 !important; }
+
+/* Polaroid */
+.polaroid { background: white; padding: 10px 10px 40px; border-radius: 5px; transform: rotate(3deg); box-shadow: 0 10px 30px rgba(0,0,0,0.4); max-width: 260px; width: 100%; }
+.polaroid img { width: 100%; height: auto; object-fit: cover; }
+
+/* Letter */
+.decor-wrapper { position: relative; width: 100%; max-width: 500px; }
+.letter-paper { background: #fffcf2; color: #333; padding: 30px; border-radius: 15px; border-left: 10px solid var(--red); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.letter-text { text-align: left; line-height: 1.6; font-size: 15px; margin: 15px 0; }
+.gift-trigger { cursor: pointer; margin-top: 20px; display: flex; flex-direction: column; align-items: center; animation: bounce 1.5s infinite; }
+.pulse-text { color: var(--red); font-weight: bold; font-size: 12px; margin-top: 5px; }
+
+/* FIX VIDEO DISPLAY */
+.quiz-card, .video-card { background: white; color: #333; padding: 25px; border-radius: 25px; width: 100%; max-width: 450px; text-align: center; }
+.video-container { width: 100%; border-radius: 15px; overflow: hidden; background: #000; line-height: 0; }
+.video-container video { width: 100%; height: auto; max-height: 70vh; display: block; }
+
+.options-grid { display: grid; gap: 10px; margin-top: 20px; }
+.option-btn { padding: 12px; border: 2px solid #eee; border-radius: 10px; background: none; cursor: pointer; font-weight: 700; transition: 0.2s; font-family: inherit; }
+.option-btn:hover { background: #27ae60; color: white; border-color: #27ae60; }
+.progress-container { width: 100%; height: 8px; background: #eee; border-radius: 4px; margin-bottom: 15px; overflow: hidden; }
+#progress { height: 100%; background: var(--red); width: 0%; transition: 0.4s; }
+.btn-back { margin-top: 20px; padding: 12px; background: var(--red); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
